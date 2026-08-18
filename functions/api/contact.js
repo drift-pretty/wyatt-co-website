@@ -54,11 +54,13 @@ export async function onRequestPost({ request }) {
   }
 
   try {
-    const response = await fetch('https://formsubmit.co/ajax/ally@wyattandcoinnovationstudio.com', {
+    const response = await fetch('https://formsubmit.co/ajax/cbed6f9e803a9812699084208ad34129', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Origin': 'https://www.wyattandcoinnovationstudio.com',
+        'Referer': 'https://www.wyattandcoinnovationstudio.com/contact'
       },
       body: JSON.stringify({
         name,
@@ -72,9 +74,10 @@ export async function onRequestPost({ request }) {
     });
 
     const result = await response.json().catch(() => ({}));
-    if (!response.ok || result.success === false) {
+    const succeeded = result.success === true || result.success === 'true';
+    if (!response.ok || !succeeded) {
       console.error('FormSubmit rejected the contact enquiry.', response.status);
-      return jsonResponse({ message: 'The enquiry could not be sent right now.' }, 502);
+      return jsonResponse({ message: result.message || 'The enquiry could not be sent right now.' }, 502);
     }
 
     return jsonResponse({ success: true });
