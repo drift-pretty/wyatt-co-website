@@ -25,13 +25,25 @@ contactForm?.addEventListener('submit', async event => {
   const formData = new FormData(contactForm);
   const payload = Object.fromEntries(formData.entries());
 
+  if (String(payload.company || '').trim()) {
+    contactForm.reset();
+    return;
+  }
+
+  delete payload.company;
+  payload['Enquiry type'] = payload.type;
+  delete payload.type;
+  payload._subject = `Wyatt & Co website enquiry — ${payload['Enquiry type']}`;
+  payload._template = 'table';
+  payload._captcha = 'false';
+
   button.disabled = true;
   button.textContent = 'Sending…';
   status.className = 'form-status';
   status.textContent = 'Sending your enquiry…';
 
   try {
-    const response = await fetch(contactForm.action, {
+    const response = await fetch('https://formsubmit.co/ajax/cbed6f9e803a9812699084208ad34129', {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -41,7 +53,8 @@ contactForm?.addEventListener('submit', async event => {
     });
     const result = await response.json().catch(() => ({}));
 
-    if (!response.ok) {
+    const succeeded = result.success === true || result.success === 'true';
+    if (!response.ok || !succeeded) {
       throw new Error(result.message || 'Your enquiry could not be sent.');
     }
 
