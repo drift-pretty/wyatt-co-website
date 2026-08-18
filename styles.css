@@ -65,6 +65,9 @@ h1 em{font-style:normal;color:var(--gold)}
 .contact-form{display:grid;gap:16px;padding:30px;border-radius:24px;background:var(--panel);border:1px solid var(--line)}.contact-form label{font-size:.85rem;font-weight:700}
 .contact-form input,.contact-form textarea,.contact-form select{width:100%;margin-top:7px;padding:14px;border-radius:11px;border:1px solid var(--line);background:#070c19;color:white;outline:none}
 .contact-form input:focus,.contact-form textarea:focus,.contact-form select:focus{border-color:var(--purple2)}.contact-form small{color:var(--muted)}
+.contact-form button[disabled]{cursor:wait;opacity:.7;transform:none}.contact-form small a{color:var(--gold2);text-decoration:underline;text-underline-offset:2px}
+.form-status{min-height:1.5em;margin:0;color:var(--muted);font-size:.9rem}.form-status.success{color:#7fe2ad}.form-status.error{color:#ff9f9f}
+.form-trap{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;overflow:hidden!important}
 .narrow{max-width:850px}.legal-copy h2{font-size:2.5rem;margin-top:45px}.legal-copy p{color:var(--muted)}
 .site-footer{padding:38px 0;background:#02040a;border-top:1px solid var(--line)}.footer-grid{display:grid;grid-template-columns:1fr auto;gap:28px;align-items:center}
 .footer-brand{display:flex;align-items:center;gap:12px}.footer-brand img{width:46px;height:46px;border-radius:12px}.footer-brand div{display:flex;flex-direction:column}.footer-brand span{color:var(--muted);font-size:.8rem}

@@ -32,16 +32,18 @@
     <div class="contact-copy">
       <p class="eyebrow purple">WYATT & CO INNOVATION STUDIO</p>
       <h2>Choose the right enquiry type.</h2>
-      <p>The form is prepared for app updates, commercial discussions, patent licensing and general contact.</p>
+      <p>Use the form for app updates, commercial discussions, patent licensing and general contact.</p>
       <div class="contact-types"><span>App enquiry</span><span>Patent licensing</span><span>Partnership</span><span>Media</span><span>General</span></div>
     </div>
-    <form class="contact-form" id="contactForm">
-      <label>Name<input name="name" required placeholder="Your name"></label>
-      <label>Email<input name="email" type="email" required placeholder="Your email"></label>
+    <form class="contact-form" id="contactForm" method="post" action="/api/contact">
+      <label>Name<input name="name" required maxlength="100" autocomplete="name" placeholder="Your name"></label>
+      <label>Email<input name="email" type="email" required maxlength="254" autocomplete="email" placeholder="Your email"></label>
       <label>Enquiry type<select name="type"><option>General enquiry</option><option>App enquiry</option><option>Patent licensing</option><option>Partnership</option><option>Media</option></select></label>
-      <label>Message<textarea name="message" rows="6" required placeholder="Tell us about your enquiry"></textarea></label>
+      <label>Message<textarea name="message" rows="6" required minlength="10" maxlength="5000" placeholder="Tell us about your enquiry"></textarea></label>
+      <label class="form-trap" aria-hidden="true">Company<input name="company" tabindex="-1" autocomplete="off"></label>
       <button class="button primary" type="submit">Send enquiry</button>
-      <small>This form needs to be connected to your business email when the site is published.</small>
+      <p class="form-status" id="contactStatus" role="status" aria-live="polite"></p>
+      <small>Your details are used only to respond to your enquiry. See our <a href="privacy.html">Privacy Policy</a>.</small>
     </form>
   </div>
 </section>
